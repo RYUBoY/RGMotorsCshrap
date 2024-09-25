@@ -7,6 +7,15 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Gauge\Font.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Gauge\Images.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Gauge\Style.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

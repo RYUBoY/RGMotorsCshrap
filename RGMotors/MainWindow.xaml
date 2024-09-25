@@ -4,9 +4,68 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RGMotors"
+        xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:constantChanges="clr-namespace:RGMotors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="700" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
+    <Grid>
+        <Grid Height="60" VerticalAlignment="Top" Background="#131313">
+            <TextBlock Text="RGMotors" Foreground="White" HorizontalAlignment="Center" FontSize="22" VerticalAlignment="Center" FontFamily="Bahnschrift"/>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryHueLightBrush}" Click="buttonExit_Click" Height="60" Margin="1197,0,0,0" Width="60">
+                <materialDesign:PackIcon Kind="Power" Height="38" Width="30" VerticalAlignment="Center"/>
+            </Button>
+            <Button HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryHueLightBrush}" Click="OpenLink_Click" Margin="1133,0,0,0" Height="60" Width="64">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Github" Height="36" Width="31"/>
+                </StackPanel>
+            </Button>
+        </Grid>
+        <Grid Margin="0 60 0 0" RenderTransformOrigin="0.5,0.5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="233*"/>
+                <ColumnDefinition Width="1047*"/>
+            </Grid.ColumnDefinitions>
+            <dragablz:TabablzControl Background="#434343" Grid.ColumnSpan="2">
+                <dragablz:TabablzControl.InterTabController>
+                    <dragablz:InterTabController/>
+                </dragablz:TabablzControl.InterTabController>
+                <TabItem Header="Panel">
+                    <Grid x:Name="gridMain">
+
+                    </Grid>
+                    <!--총 생산 전력-->
+                </TabItem>
+                <TabItem Header="Press">
+                    <Grid>
+                        <Grid>
+
+                        </Grid>
+                        <Grid>
+
+
+
+                        </Grid>
+                    </Grid>
+
+                </TabItem>
+                <TabItem Header="OPTION">
+                    <Grid>
+                        <Grid x:Name="loginGrid" >
+                            <Label Content="관리자 모드" Width="422" Margin="225,23,225,440" FontSize="72"></Label>
+                            <Label x:Name="idLabel" Content="ID" Margin="105,168,647,289" FontSize="72"/>
+                            <TextBox x:Name="idTextBox" TextWrapping="Wrap" Margin="225,168,236,289" FontSize="72"/>
+                            <Label x:Name="pwLabel" Content="PW" Margin="85,337,647,120" FontSize="72"/>
+                            <PasswordBox x:Name="pwTextBox" Margin="225,337,236,120" FontSize="72"/>
+                            <Button x:Name="managerLoginButton" Content="로그인" HorizontalAlignment="Left" Margin="225,477,0,0" VerticalAlignment="Top" Height="70" Width="411" RenderTransformOrigin="0.324,0.302" FontSize="36" Click="managerLoginButton_Click"/>
+                        </Grid>
+                        <Grid x:Name="managerPage" Visibility="Collapsed">
+                            <Label Content="이곳은 관리자 페이지입니다." FontSize="36" Margin="172,0,172,502" RenderTransformOrigin="0.495,0.374"/>
+                        </Grid>
+                    </Grid>
+                </TabItem>
+            </dragablz:TabablzControl>
+        </Grid>
     </Grid>
 </Window>
