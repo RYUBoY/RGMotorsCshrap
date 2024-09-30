@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using XGCommLib;
 
 namespace RGMotors
 {
@@ -21,21 +22,21 @@ namespace RGMotors
             InitializeComponent();
         }
 
-        private void buttonExit_Click(object sender, RoutedEventArgs e)
+        private void buttonExit_Click(object sender, RoutedEventArgs e)//애플리케이션 종료 버튼
         {
             Application.Current.Shutdown(); // WPF 애플리케이션 종료
         }
 
         //관리자 모드
 
-        private void managerLoginButton_Click(object sender, RoutedEventArgs e)
+        private void managerLoginButton_Click(object sender, RoutedEventArgs e)//관리자 모드 로그인 버튼
         {
             login();
         }
 
         private string adminID = "admin123";//관리자 아이디
         private string adminPW = "admin123";//관리자 비밀번호
-        public void login()
+        public void login() //로그인 로직
         {
             if (idTextBox.Text == adminID)
             {
@@ -56,7 +57,7 @@ namespace RGMotors
             }
         }
 
-        private void OpenLink_Click(object sender, RoutedEventArgs e)
+        private void OpenLink_Click(object sender, RoutedEventArgs e)//GitHub 버튼
         {
             string url = "https://github.com/KimJongHoss/RGMotorsCshrap";  // 여기에 원하는 URL을 입력하세요
             try
@@ -73,5 +74,15 @@ namespace RGMotors
             }
         }
 
+        private void testButton_Click(object sender, RoutedEventArgs e)//테스트 버튼 클릭시
+        {
+            test();
+        }
+
+        private void connectPLC_Click(object sender, RoutedEventArgs e)
+        {
+            CommObject20 oCommDriver = null;
+            oCommDriver = connectPLC();
+        }
     }
 }
