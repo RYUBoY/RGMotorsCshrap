@@ -73,6 +73,8 @@ namespace RGMotors
                 {
                     byte resultValue = bufRead[offset];
 
+                    UpdateGauge(resultValue); // 라디알 가그 업데이트
+
                     byte mask1 = 0b00000001; // 1
                     byte mask2 = 0b00000010; // 2
                     byte mask3 = 0b00000100; // 4
@@ -161,6 +163,41 @@ namespace RGMotors
             else
             {
                 MessageBox.Show("Disconnect fail");
+            }
+        }
+
+        private void UpdateGauge(byte resultValue) // 라디알 가그
+        {
+            byte mask1 = 0b00000001; // 1
+            byte mask2 = 0b00000010; // 2
+            byte mask3 = 0b00000100; // 4
+            byte mask4 = 0b00100000; // 32
+            byte mask5 = 0b01000000; // 64
+
+            if ((resultValue & mask1) != 0)
+            {
+                conveyorspeed.Value = 50; // mask1일 때 50
+            }
+            else if ((resultValue & mask2) != 0)
+            {
+                conveyorspeed.Value = 70; // mask2일 때 70
+            }
+            else if ((resultValue & mask3) != 0)
+            {
+                conveyorspeed.Value = 100; // mask3일 때 100
+            }
+            else if ((resultValue & mask4) != 0)
+            {
+                conveyorspeed.Value = 70; // mask4일 때 70
+            }
+            else if ((resultValue & mask5) != 0)
+            {
+                conveyorspeed.Value = 50; // mask5일 때 50
+            }
+            else
+            {
+                // 기본값 (어떤 마스크 값도 해당되지 않을 때)
+                conveyorspeed.Value = 0;
             }
         }
 

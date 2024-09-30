@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dragablz" Version="0.0.3.234" />
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes" Version="5.1.1-ci753" />
   </ItemGroup>
 
