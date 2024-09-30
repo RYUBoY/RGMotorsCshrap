@@ -14,14 +14,10 @@ namespace RGMotors
 
 
 
-        public CommObject20 connectPLC()
+        public CommObject20 connectPLC(CommObject20 oCommDriver, CommObjectFactory20 factory)
         {
-            CommObject20 oCommDriver = null;
             try
             {
-                CommObjectFactory20 factory = new CommObjectFactory20();
-                MessageBox.Show("CommObjectFactory 생성됨");
-
                 oCommDriver = factory.GetMLDPCommObject20("192.168.1.201:2004");
 
                 if (oCommDriver == null)
@@ -63,8 +59,26 @@ namespace RGMotors
             oDevice.ucDataType = (byte)'B';
             oDevice.ucDeviceType = (byte)'W';
 
-            byte[] bufRead = new byte[nTotal_len];
+            
+            oDevice.lOffset = int.Parse(TextBox_Byteoffset.Text);
+            oDevice.lSize = int.Parse(TextBox_Biteoffset.Text);
+           
+
+            oCommDriver.AddDeviceInfo(oDevice);
+
             byte[] bWriteBuf = new byte[nTotal_len];
+            Array.Copy(bufWrite, 0, bWriteBuf, 0, nTotal_len);
+
+            if (1 == oCommDriver.WriteRandomDevice(bWriteBuf))
+            {
+                MessageBox.Show("bWriteBuf success");
+            }
+            else
+            {
+                MessageBox.Show("bWriteBuf fail");
+            }
+
+            byte[] bufRead = new byte[nTotal_len];
             if (1 == oCommDriver.ReadRandomDevice(bufRead))
             {
                 int offset = (int)oDevice.lOffset;
