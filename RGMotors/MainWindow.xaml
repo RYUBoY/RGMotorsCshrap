@@ -33,14 +33,18 @@
                     <dragablz:InterTabController/>
                 </dragablz:TabablzControl.InterTabController>
                 <TabItem Header="Panel">
-                    <Grid x:Name="gridMain" Background="WhiteSmoke">
-                        <Button x:Name="testButton" Content="test" HorizontalAlignment="Left" Margin="721,196,0,0" VerticalAlignment="Top" Background="#FFBE2222" Click="testButton_Click"/>
-                        <Button x:Name="connectionButton" Content="ConnectPLC" HorizontalAlignment="Left" Margin="721,250,0,0" VerticalAlignment="Top" Background="#FFBE2222" Click="connectPLC_Click"/>
+                    <Grid x:Name="gridMain" Background="Black">
+                        <Button x:Name="testButton" Content="test" HorizontalAlignment="Left" Margin="721,300,0,0" VerticalAlignment="Top" Background="#FFBE2222" Click="testButton_Click"/>
+                        <Button x:Name="connectionButton" Content="ConnectPLC" HorizontalAlignment="Left" Margin="721,350,0,0" VerticalAlignment="Top" Background="#FFBE2222" Click="connectPLC_Click"/>
+                        <Button x:Name="PanelButton" Content="showPanel" Visibility="Hidden" HorizontalAlignment="Left" Margin="850,350,0,0" VerticalAlignment="Top" Background="#FFBE2222" Click="PanelButton_click"/>
                         <Image x:Name="solarpanel1" Source="\Resources\패널1.png" HorizontalAlignment="Left" Height="195" Margin="400,177,0,0" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
                         <Image x:Name="solarpanel2" Source="\Resources\패널2.png" HorizontalAlignment="Left" Height="195" Margin="400,177,0,0" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
                         <Image x:Name="solarpanel3" Source="\Resources\패널3.png" HorizontalAlignment="Left" Height="195" Margin="400,177,0,0" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
                         <Image x:Name="solarpanel4" Source="\Resources\패널4.png" HorizontalAlignment="Left" Height="195" Margin="400,177,0,0" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
                         <Image x:Name="solarpanel5" Source="\Resources\패널5.png" HorizontalAlignment="Left" Height="195" Margin="400,177,0,0" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
+                        <TextBox x:Name="TextBox_Byteoffset" TextWrapping="Wrap" Margin="10,61,668,310" Background="White" Width="200" Height="80"/>
+                        <TextBox x:Name="TextBox_Biteoffset" TextWrapping="Wrap" Margin="300,61,496,310" Background="White" Width="200" Height="80"/>
+                        <TextBox x:Name="TextBox_1or0" TextWrapping="Wrap" Margin="600,61,337,310" Background="White" Width="200" Height="80"/>
                         <TextBox x:Name="TextBox_Result" TextWrapping="Wrap" Margin="10,164,668,217" Background="White" Width="200" Height="80"/>
                         <lvc:Gauge x:Name="conveyorspeed" From="0" To="100" Value="0" LabelsVisibility="Collapsed" Margin="720,370,-100,20">
                             <lvc:Gauge.GaugeActiveFill>

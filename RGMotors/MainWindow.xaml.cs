@@ -21,7 +21,8 @@ namespace RGMotors
         {
             InitializeComponent();
         }
-
+        CommObject20 oCommDriver = null;
+        CommObjectFactory20 factory = new CommObjectFactory20();
         private void buttonExit_Click(object sender, RoutedEventArgs e)//애플리케이션 종료 버튼
         {
             Application.Current.Shutdown(); // WPF 애플리케이션 종료
@@ -81,8 +82,15 @@ namespace RGMotors
 
         private void connectPLC_Click(object sender, RoutedEventArgs e)
         {
-            CommObject20 oCommDriver = null;
-            oCommDriver = connectPLC();
+            
+           
+            PanelButton.Visibility = Visibility.Visible;
+        }
+
+        private void PanelButton_click(object sender, RoutedEventArgs e)
+        {
+            oCommDriver = connectPLC(oCommDriver, factory);
+            showPanel(oCommDriver, factory);
         }
     }
 }
