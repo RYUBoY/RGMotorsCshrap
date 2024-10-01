@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\ConveyorBelt.gif" />
+    <None Remove="Resources\ConveyorBelt_noBackground.gif" />
     <None Remove="Resources\패널1.png" />
     <None Remove="Resources\패널2.png" />
     <None Remove="Resources\패널3.png" />
@@ -33,9 +35,13 @@
     <PackageReference Include="Dragablz" Version="0.0.3.234" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes" Version="5.1.1-ci753" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="WpfAnimatedGif" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\ConveyorBelt.gif" />
+    <Resource Include="Resources\ConveyorBelt_noBackground.gif" />
     <Resource Include="Resources\패널1.png" />
     <Resource Include="Resources\패널2.png" />
     <Resource Include="Resources\패널3.png" />

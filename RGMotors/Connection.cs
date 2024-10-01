@@ -108,12 +108,12 @@ namespace RGMotors
                         results[i] = (resultValue & masks[i]) != 0;
                     }
 
-                    // results 배열에 각 mask에 대한 결과가 저장됨
-                    bool isOne = results[0];
-                    bool isTwo = results[1];
-                    bool isThree = results[2];
-                    bool isFour = results[3];
-                    bool isFive = results[4];
+                    //// results 배열에 각 mask에 대한 결과가 저장됨
+                    //bool isOne = results[0];
+                    //bool isTwo = results[1];
+                    //bool isThree = results[2];
+                    //bool isFour = results[3];
+                    //bool isFive = results[4];
 
                     // 패널들을 배열로 정리
                     UIElement[] solarPanels = { solarpanel1, solarpanel2, solarpanel3, solarpanel4, solarpanel5 };
@@ -124,27 +124,29 @@ namespace RGMotors
                         panel.Visibility = Visibility.Collapsed;
                     }
 
-                    // switch문을 사용한 선택 로직
-                    int index = -1;
+                    //// switch문을 사용한 선택 로직
+                    //int index = -1;
 
-                    switch (true)
-                    {
-                        case bool _ when isOne:
-                            index = 0;
-                            break;
-                        case bool _ when isTwo:
-                            index = 1;
-                            break;
-                        case bool _ when isThree:
-                            index = 2;
-                            break;
-                        case bool _ when isFour:
-                            index = 3;
-                            break;
-                        case bool _ when isFive:
-                            index = 4;
-                            break;
-                    }
+                    //switch (true)
+                    //{
+                    //    case bool _ when isOne:
+                    //        index = 0;
+                    //        break;
+                    //    case bool _ when isTwo:
+                    //        index = 1;
+                    //        break;
+                    //    case bool _ when isThree:
+                    //        index = 2;
+                    //        break;
+                    //    case bool _ when isFour:
+                    //        index = 3;
+                    //        break;
+                    //    case bool _ when isFive:
+                    //        index = 4;
+                    //        break;
+                    //}
+
+                    int index = FetchSunData();
 
                     if (index >= 0)
                     {

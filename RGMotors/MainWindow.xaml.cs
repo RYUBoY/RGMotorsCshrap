@@ -1,4 +1,6 @@
-﻿using System.Text;
+﻿using System;
+using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,6 +19,7 @@ namespace RGMotors
     /// </summary>
     public partial class MainWindow : Window
     {
+        private ApiService _apiService = new ApiService();
         public MainWindow()
         {
             InitializeComponent();
@@ -83,7 +86,6 @@ namespace RGMotors
         private void connectPLC_Click(object sender, RoutedEventArgs e)
         {
             
-           
             PanelButton.Visibility = Visibility.Visible;
         }
 
@@ -91,6 +93,20 @@ namespace RGMotors
         {
             oCommDriver = connectPLC(oCommDriver, factory);
             showPanel(oCommDriver, factory);
+        }
+
+        private void getSunData_Click(object sender, RoutedEventArgs e)
+        {
+            int sunData = FetchSunData();
+            if (sunData >= 0)
+            {
+                // index 값을 TextBox에 설정
+                TextBox_SunData.Text = sunData.ToString(); // int를 문자열로 변환하여 설정
+            }
+            else
+            {
+                MessageBox.Show("Failed to load data");
+            }
         }
     }
 }
