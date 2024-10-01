@@ -50,6 +50,7 @@ namespace RGMotors
         public void showPanel(CommObject20 oCommDriver, CommObjectFactory20 factory20)
         {
 
+
             int nMaxBuf = 1400;
             byte[] bufWrite = new byte[nMaxBuf];
 
@@ -60,13 +61,13 @@ namespace RGMotors
             oDevice.ucDeviceType = (byte)'W';
 
             
-            oDevice.lOffset = int.Parse(TextBox_Byteoffset.Text);
-            oDevice.lSize = int.Parse(TextBox_Biteoffset.Text);
+            //oDevice.lOffset = int.Parse(TextBox_Byteoffset.Text);
+            //oDevice.lSize = int.Parse(TextBox_Biteoffset.Text);
            
 
             oCommDriver.AddDeviceInfo(oDevice);
 
-            bufWrite[0] = (byte)int.Parse(TextBox_1or0.Text);
+            //bufWrite[0] = (byte)int.Parse(TextBox_1or0.Text);
             nTotal_len += 1;
 
             byte[] bWriteBuf = new byte[nTotal_len];
@@ -124,29 +125,32 @@ namespace RGMotors
                         panel.Visibility = Visibility.Collapsed;
                     }
 
-                    //// switch문을 사용한 선택 로직
-                    //int index = -1;
-
-                    //switch (true)
-                    //{
-                    //    case bool _ when isOne:
-                    //        index = 0;
-                    //        break;
-                    //    case bool _ when isTwo:
-                    //        index = 1;
-                    //        break;
-                    //    case bool _ when isThree:
-                    //        index = 2;
-                    //        break;
-                    //    case bool _ when isFour:
-                    //        index = 3;
-                    //        break;
-                    //    case bool _ when isFive:
-                    //        index = 4;
-                    //        break;
-                    //}
-
                     int index = FetchSunData();
+
+                    // switch문을 사용한 선택 로직
+                 
+
+                    switch (index)
+                    {
+                        case 1 :
+                            index = 0;
+                            break;
+                        case 2:
+                            index = 1;
+                            break;
+                        case 4:
+                            index = 2;
+                            break;
+                        case 32:
+                            index = 3;
+                            break;
+                        case 64:
+                            index = 4;
+                            break;
+                    }
+
+
+
 
                     if (index >= 0)
                     {
