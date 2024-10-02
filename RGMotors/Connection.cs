@@ -47,7 +47,7 @@ namespace RGMotors
             }
         }
 
-        public void showPanel(CommObject20 oCommDriver, CommObjectFactory20 factory20)
+        public void showPanel(CommObject20 oCommDriver, CommObjectFactory20 factory20, int index)
         {
 
 
@@ -125,14 +125,14 @@ namespace RGMotors
                         panel.Visibility = Visibility.Collapsed;
                     }
 
-                    int index = FetchSunData();
+
 
                     // switch문을 사용한 선택 로직
-                 
+
 
                     switch (index)
                     {
-                        case 1 :
+                        case 1:
                             index = 0;
                             break;
                         case 2:

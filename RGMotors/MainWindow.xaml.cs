@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Net.Http;
 using System.Reflection;
+using System.Reflection.Emit;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using XGCommLib;
+using static RGMotors.MainWindow;
 
 namespace RGMotors
 {
@@ -19,7 +23,11 @@ namespace RGMotors
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ApiService _apiService = new ApiService();
+        private static readonly HttpClient client = new HttpClient();
+        private DispatcherTimer timer;
+        private bool isVideoFinished = false; // 비디오 종료 상태 추적 변수
+        private int x1Value;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -91,21 +99,71 @@ namespace RGMotors
 
         private void PanelButton_click(object sender, RoutedEventArgs e)
         {
-            oCommDriver = connectPLC(oCommDriver, factory);
-            showPanel(oCommDriver, factory);
+           
         }
 
-        private void getSunData_Click(object sender, RoutedEventArgs e)
+        private async void getSunData_Click(object sender, RoutedEventArgs e)
         {
-            int sunData = FetchSunData();
-            if (sunData >= 0)
+            var response = await client.GetStringAsync("http://127.0.0.1:5000/reset_x1");
+            StartSunTracking();
+            StartTimer();
+        }
+
+        private async void StartSunTracking()
+        {
+            try
             {
-                // index 값을 TextBox에 설정
-                TextBox_SunData.Text = sunData.ToString(); // int를 문자열로 변환하여 설정
+                await client.GetStringAsync("http://127.0.0.1:5000/books1");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Failed to load data");
+                MessageBox.Show($"Error starting sun tracking: {ex.Message}");
+            }
+        }
+
+        private void StartTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1); // 1초마다 호출
+            timer.Tick += async (sender, e) => await FetchX1Value();
+            timer.Start();
+        }
+
+        private async Task FetchX1Value()
+        {
+
+            try
+            {
+                var response = await client.GetStringAsync("http://127.0.0.1:5000/x1");
+                dynamic json = Newtonsoft.Json.JsonConvert.DeserializeObject(response);
+                x1Value = json.x1;
+
+                // 비디오가 종료된 경우 처리
+                if (x1Value == -1 && !isVideoFinished) // 종료 상태를 나타내는 값
+                {
+                    isVideoFinished = true; // 종료 상태로 설정
+                    timer.Stop(); // 타이머 중지
+                    MessageBox.Show("비디오가 종료되었습니다.");
+                    return;
+                }
+                else if (x1Value != -1)
+                {
+                    isVideoFinished = false; // 비디오가 다시 재생 중인 경우
+                }
+
+                // UI 업데이트를 안전하게 수행
+                Dispatcher.Invoke(() =>
+                {
+                    //TextBox_Result.Text = $"Current x1 value: {x1Value}";
+                    oCommDriver = connectPLC(oCommDriver, factory);
+                    showPanel(oCommDriver, factory, x1Value);
+                });
+
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching x1 value: {ex.Message}");
             }
         }
     }
