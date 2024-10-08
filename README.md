@@ -19,6 +19,9 @@
 <br>
 # 실행 화면
 
+![KakaoTalk_20241008_162707760](https://github.com/user-attachments/assets/cca7833b-9748-4037-945b-521fdf02b100)
+
+
 ### Tap1)
 
 📊 LiveChart 그래프 (X축 : 시간, Y축 : 전력 생산량)
@@ -29,6 +32,7 @@
 
 ### Tap2)
 
+![belt_compressed](https://github.com/user-attachments/assets/d11c67fb-ba39-4f75-a4b9-41a44c30af3a)
 
 🙋‍♀️ 컨베이어 벨트와 움직이는 상자 이미지화 하여 표현
 
