@@ -3,9 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:wpfAnimatedGif="http://wpfanimatedgif.codeplex.com"
         xmlns:local="clr-namespace:RGMotors"
         xmlns:dragablz="clr-namespace:Dragablz;assembly=Dragablz"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:constantChanges="clr-namespace:RGMotors"
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
@@ -21,6 +23,11 @@
                     <materialDesign:PackIcon Kind="Github" Height="36" Width="31"/>
                 </StackPanel>
             </Button>
+            <Button x:Name="getSunData" HorizontalAlignment="Left" Margin="1073,0,0,0" VerticalAlignment="Center" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{DynamicResource PrimaryHueLightBrush}" Click="getSunData_Click" Height="60" Width="64">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="TimerStart" Height="36" Width="31"/>
+                </StackPanel>
+            </Button>
         </Grid>
         <Grid Margin="0 60 0 0" RenderTransformOrigin="0.5,0.5">
             <Grid.ColumnDefinitions>
@@ -32,23 +39,70 @@
                     <dragablz:InterTabController/>
                 </dragablz:TabablzControl.InterTabController>
                 <TabItem Header="Panel">
-                    <Grid x:Name="gridMain">
-
+                    <Grid x:Name="gridMain" Background="#434343">
+                        <Image x:Name="solarpanel1" Source="\Resources\패널1.png" HorizontalAlignment="Left" Height="500" Margin="184,101,0,0" VerticalAlignment="Top" Width="400" Visibility="Collapsed"/>
+                        <Image x:Name="solarpanel2" Source="\Resources\패널2.png" HorizontalAlignment="Left" Height="500" Margin="184,101,0,0" VerticalAlignment="Top" Width="400" Visibility="Collapsed"/>
+                        <Image x:Name="solarpanel3" Source="\Resources\패널3.png" HorizontalAlignment="Left" Height="500" Margin="184,101,0,0" VerticalAlignment="Top" Width="400" Visibility="Collapsed"/>
+                        <Image x:Name="solarpanel4" Source="\Resources\패널4.png" HorizontalAlignment="Left" Height="500" Margin="184,101,0,0" VerticalAlignment="Top" Width="400" Visibility="Collapsed"/>
+                        <Image x:Name="solarpanel5" Source="\Resources\패널5.png" HorizontalAlignment="Left" Height="500" Margin="184,101,0,0" VerticalAlignment="Top" Width="400" Visibility="Collapsed"/>
+                        <TextBox x:Name="TextBox_Result" TextWrapping="Wrap" Margin="10,164,668,217" Background="White" Width="200" Height="80" Visibility="Hidden"/>
+                        <lvc:CartesianChart x:Name="conveyorChart" Grid.Column="1" Height="300" Width="400" Margin="750,50,29,174">
+                            <lvc:CartesianChart.Series>
+                                <lvc:LineSeries Title="Conveyor Speed"
+                                      Values="{Binding Values}" 
+                                       PointGeometrySize="10"
+                                         LineSmoothness="0"              
+                                          Fill="Transparent" />
+                            </lvc:CartesianChart.Series>
+                            <lvc:CartesianChart.AxisX>
+                                <lvc:Axis ShowLabels="False" />
+                            </lvc:CartesianChart.AxisX>
+                            <lvc:CartesianChart.AxisY>
+                                <lvc:Axis Title="Values" MinValue="-10" MaxValue="110" />
+                            </lvc:CartesianChart.AxisY>
+                        </lvc:CartesianChart>
+                        <lvc:Gauge x:Name="conveyorspeed2" From="0" To="100" Value="0" LabelsVisibility="Collapsed" Margin="751,420,17,16" Foreground="White">
+                            <lvc:Gauge.GaugeActiveFill>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="Yellow" Offset="0.0" />
+                                    <GradientStop Color="Orange" Offset="0.5" />
+                                    <GradientStop Color="Red" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </lvc:Gauge.GaugeActiveFill>
+                        </lvc:Gauge>
                     </Grid>
-                    <!--총 생산 전력-->
                 </TabItem>
+                
                 <TabItem Header="Press">
                     <Grid>
-                        <Grid>
+                        <Image x:Name="ConveyorBelt1" wpfAnimatedGif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/ConveyorBelt_noBackground.gif" Width="500" Height="300" Margin="289,320,470,7"/>
 
-                        </Grid>
-                        <Grid>
-
-
-
-                        </Grid>
+                        <Image x:Name="ConveyorBelt2" wpfAnimatedGif:ImageBehavior.AnimatedSource="pack://application:,,,/Resources/ConveyorBelt_noBackground.gif" Width="500" Height="300" Margin="289,60,470,273"/>
+                        <Canvas x:Name="myCanvas">
+                            <Image x:Name="smallbox" Source="\Resources\smallbox.png" HorizontalAlignment="Left" Height="195" Canvas.Left="250" Canvas.Top="297" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
+                            <Image x:Name="largebox" Source="\Resources\largebox.png" HorizontalAlignment="Left" Height="195" Canvas.Left="270" Canvas.Top="20" VerticalAlignment="Top" Width="203" Visibility="Collapsed"/>
+                        </Canvas>
+                        <!--<TextBox x:Name="text1"
+AcceptsReturn="True" HorizontalAlignment="Left" Margin="102,113,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="238" Height="168"/>-->
+                        <TextBox x:Name="LBox" HorizontalAlignment="Left" Height="86" Margin="990,155,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" FontSize="20" Foreground="White"/>
+                        <TextBox x:Name="SBox" HorizontalAlignment="Left" Height="124" Margin="991,405,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="194" FontSize="20" Foreground="White"/>
+                        <Label Content="L size =" HorizontalAlignment="Left" Height="78" Margin="851,180,0,0" VerticalAlignment="Top" Width="159" FontSize="20" Foreground="White"/>
+                        <Label Content="S size =" HorizontalAlignment="Left" Margin="851,450,0,0" VerticalAlignment="Top" Height="40" Width="140" FontSize="20" Foreground="White"/>
+                        <!--<TextBox x:Name="LorS" HorizontalAlignment="Left" Height="63" Margin="102,34,0,0" TextWrapping="Wrap" Text="TexasdtBox" VerticalAlignment="Top" Width="238" />-->
+                        <Slider x:Name="sd" Minimum="0" Maximum="100" HorizontalAlignment="Left" Height="25" Margin="96,530,0,0" VerticalAlignment="Top" Width="344" RenderTransformOrigin="1.144,0.813" ValueChanged="Slider_ValueChanged" Visibility="Hidden"/>
+                        <TextBox x:Name="gage" HorizontalAlignment="Left" Height="22" Margin="221,329,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="64" Visibility="Hidden"/>
+                        <Button Name="start" Content="START" HorizontalAlignment="Left" Height="43" Margin="1048,250,0,0" VerticalAlignment="Top" Width="138" Click="start_Click" Foreground="White" BorderBrush="White" BorderThickness="2"/>
+                        <Button x:Name="stop" Content="STOP" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="138" Click="stop_Click" Margin="1048,350,0,0" Foreground="White" BorderBrush="White" BorderThickness="2"/>
+                        <lvc:Gauge x:Name="conveyorspeed" From="0" To="100" Value="0" LabelsVisibility="Collapsed" Margin="-50,442,930,16" Foreground="White">
+                            <lvc:Gauge.GaugeActiveFill>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="Yellow" Offset="0.0" />
+                                    <GradientStop Color="Orange" Offset="0.5" />
+                                    <GradientStop Color="Red" Offset="1.0" />
+                                </LinearGradientBrush>
+                            </lvc:Gauge.GaugeActiveFill>
+                        </lvc:Gauge>
                     </Grid>
-
                 </TabItem>
                 <TabItem Header="OPTION">
                     <Grid>
