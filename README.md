@@ -20,9 +20,6 @@
 
 # 실행 화면
 
-![KakaoTalk_20241008_162707760](https://github.com/user-attachments/assets/cca7833b-9748-4037-945b-521fdf02b100)
-
-
 ### Tap1)
 
 📊 LiveChart 그래프 (X축 : 시간, Y축 : 전력 생산량)
@@ -30,6 +27,8 @@
 🙋‍♂️전력 생산량 Radial Gauge로 표현
 
 🙋‍♀️태양 위치에 따른 패널의 위치 변화 표현
+
+![KakaoTalk_20241008_162707760](https://github.com/user-attachments/assets/cca7833b-9748-4037-945b-521fdf02b100)
 
 ### Tap2)
 
