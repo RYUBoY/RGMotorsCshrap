@@ -25,18 +25,18 @@ namespace RGMotors
                     MessageBox.Show("oCommDriver가 null입니다. 연결 실패.");
                 }
 
-                MessageBox.Show("oCommDriver 생성됨");
+                //MessageBox.Show("oCommDriver 생성됨");
                 
 
                 int connectResult = oCommDriver.Connect("");
                 if (connectResult == 0)
                 {
-                    MessageBox.Show("connect 실패");
+                    
                     return null;
                 }
                 else
                 {
-                    MessageBox.Show("connect 성공!");
+                    //MessageBox.Show("connect 성공!");
                     return oCommDriver;
                 }
             }
@@ -58,16 +58,16 @@ namespace RGMotors
 
             XGCommLib.DeviceInfo oDevice = factory20.CreateDevice();
             oDevice.ucDataType = (byte)'B';
-            oDevice.ucDeviceType = (byte)'W';
+            oDevice.ucDeviceType = (byte)'M';
 
-            
-            //oDevice.lOffset = int.Parse(TextBox_Byteoffset.Text);
-            //oDevice.lSize = int.Parse(TextBox_Biteoffset.Text);
-           
+
+            oDevice.lOffset = 0;
+            oDevice.lSize = 1;
+
 
             oCommDriver.AddDeviceInfo(oDevice);
 
-            //bufWrite[0] = (byte)int.Parse(TextBox_1or0.Text);
+            bufWrite[0] = (byte)x1Value;
             nTotal_len += 1;
 
             byte[] bWriteBuf = new byte[nTotal_len];
@@ -75,7 +75,7 @@ namespace RGMotors
 
             if (1 == oCommDriver.WriteRandomDevice(bWriteBuf))
             {
-                MessageBox.Show("bWriteBuf success");
+                //MessageBox.Show("bWriteBuf success");
             }
             else
             {
@@ -181,7 +181,7 @@ namespace RGMotors
             int nRetn = oCommDriver.Disconnect();
             if (nRetn == 1)
             {
-                MessageBox.Show("Disconnect Success");
+                //MessageBox.Show("Disconnect Success");
             }
             else
             {
@@ -200,27 +200,33 @@ namespace RGMotors
             if ((resultValue & mask1) != 0)
             {
                 conveyorspeed.Value = 50; // mask1일 때 50
+                conveyorspeed2.Value = 50;
             }
             else if ((resultValue & mask2) != 0)
             {
                 conveyorspeed.Value = 70; // mask2일 때 70
+                conveyorspeed2.Value = 70;
             }
             else if ((resultValue & mask3) != 0)
             {
                 conveyorspeed.Value = 100; // mask3일 때 100
+                conveyorspeed2.Value = 100;
             }
             else if ((resultValue & mask4) != 0)
             {
                 conveyorspeed.Value = 70; // mask4일 때 70
+                conveyorspeed2.Value = 70;
             }
             else if ((resultValue & mask5) != 0)
             {
                 conveyorspeed.Value = 50; // mask5일 때 50
+                conveyorspeed2.Value = 50;
             }
             else
             {
                 // 기본값 (어떤 마스크 값도 해당되지 않을 때)
                 conveyorspeed.Value = 0;
+                conveyorspeed2.Value = 0;
             }
         }
 

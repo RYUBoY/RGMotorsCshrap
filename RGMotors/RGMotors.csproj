@@ -12,6 +12,13 @@
   <ItemGroup>
     <None Remove="Resources\ConveyorBelt.gif" />
     <None Remove="Resources\ConveyorBelt_noBackground.gif" />
+    <None Remove="Resources\largebox.png" />
+    <None Remove="Resources\smallbox.png" />
+    <None Remove="Resources\패널001.png" />
+    <None Remove="Resources\패널002.png" />
+    <None Remove="Resources\패널003.png" />
+    <None Remove="Resources\패널004.png" />
+    <None Remove="Resources\패널005.png" />
     <None Remove="Resources\패널1.png" />
     <None Remove="Resources\패널2.png" />
     <None Remove="Resources\패널3.png" />
@@ -42,6 +49,13 @@
   <ItemGroup>
     <Resource Include="Resources\ConveyorBelt.gif" />
     <Resource Include="Resources\ConveyorBelt_noBackground.gif" />
+    <Resource Include="Resources\largebox.png" />
+    <Resource Include="Resources\smallbox.png" />
+    <Resource Include="Resources\패널001.png" />
+    <Resource Include="Resources\패널002.png" />
+    <Resource Include="Resources\패널003.png" />
+    <Resource Include="Resources\패널004.png" />
+    <Resource Include="Resources\패널005.png" />
     <Resource Include="Resources\패널1.png" />
     <Resource Include="Resources\패널2.png" />
     <Resource Include="Resources\패널3.png" />
