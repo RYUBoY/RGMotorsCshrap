@@ -1,1 +1,82 @@
-# RGMotorsCshrap
+
+# RGHamtory Project by Team 라디얼햄토리
+
+
+🔎 태양광 에너지 생산
+
+🔎 크기에 따른 상자 분류
+
+🔎 에너지 양에 비례하는 컨베이어 벨트 속도 조정
+
+<br>
+
+# 아이디어
+
+✍ 태양 추적 시스템 : 에너지 효율 극대화
+
+✍ 컨베이어 벨트 상자 분류 : 작업 효율 및 안정성 극대화
+
+<br>
+# 실행 화면
+
+### Tap1)
+
+📊 LiveChart 그래프 (X축 : 시간, Y축 : 전력 생산량)
+
+🙋‍♂️전력 생산량 Radial Gauge로 표현
+
+🙋‍♀️태양 위치에 따른 패널의 위치 변화 표현
+
+### Tap2)
+
+
+
+🙋‍♀️ 컨베이어 벨트와 움직이는 상자 이미지화 하여 표현
+
+🙋‍♂️ 에너지 양에 따라 변화하는 라인의 속도 Radial Gauge로 표현
+
+🙋‍♀️ L size, S size 각각의 상자 누적 상자량 텍스트로 표현
+
+🙋‍♂️ 라인을 멈추고 작동시킬 수 있는 start 버튼과 stop 버튼
+### 추가 기능
+
+관리자모드 추가(추후 구현 예정)
+🛠️	라인별 max 용량 설정 기능
+
+🛠️	라인별 이름 변경 기능 -> dropdown 버튼으로 구현
+
+🛠️	라인별 알림 % 설정 기능 (몇 %에서 알람이 울릴건가)
+
+🛠️	그래프 이름 변경 기능
+
+
+
+
+
+# 구성원
+```swift
+public Enginner RadialGag() {
+  public Enginner SeungHyun;
+  public Enginner JongHo;
+  public Enginner SeungHoon;
+  public Enginner DaeHee;
+  ...
+}
+```
+
+
+
+
+# 개발 도구
+
+<img src ="https://img.shields.io/badge/-C%23-000000?logo=Csharp&style=flat" style="height: 30px;">
+<img src="https://img.shields.io/badge/-WPF-0078D7?style=flat&logo=windows&logoColor=white" style="height: 30px;">
+<img src="https://img.shields.io/badge/-LiveChart-0078D7?style=flat&logo=windows&logoColor=white" style="height: 30px;">
+<img src="https://img.shields.io/badge/-WG5000-0078D7?style=flat&logo=windows&logoColor=white" style="height: 30px;">
+<img src="https://img.shields.io/badge/-PyCharm-0078D7?style=flat&logo=windows&logoColor=white" style="height: 30px;">
+
+
+# 소통 도구
+
+<img src ="https://img.shields.io/badge/github-181717?logo=github&style=flat" style="height: 30px;">
+<img src ="https://img.shields.io/badge/slack-4A154B?logo=slack&style=flat" style="height: 30px;">
